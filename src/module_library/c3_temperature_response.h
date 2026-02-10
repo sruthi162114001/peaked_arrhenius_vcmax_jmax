@@ -5,7 +5,9 @@ struct c3_temperature_response_parameters {
     double Gstar_c;     //!< Arrhenius scaling parameter for Gstar (dimensionless)
     double Gstar_Ea;    //!< Arrhenius activation energy for Gstar (J / mol)
     double Jmax_c;      //!< Arrhenius scaling parameter for Jmax_norm
-    double Jmax_Ea;     //!< Arrhenius activation energy for Jmax_norm (J / mol)
+    double Jmax_Ha;     //!< Johnson, Eyring, & Williams enthalpy of activation for Jmax_norm (J / mol)
+    double Jmax_Hd;     //!< Johnson, Eyring, & Williams enthalpy of deactivation for Jmax_norm (J / mol)
+    double Jmax_S;      //!< Johnson, Eyring, & Williams entropy parameter for Jmax_norm (J / K / mol)
     double Kc_c;        //!< Arrhenius scaling parameter for Kc (dimensionless)
     double Kc_Ea;       //!< Arrhenius activation energy for Kc (J / mol)
     double Ko_c;        //!< Arrhenius scaling parameter for Ko (dimensionless)
@@ -23,7 +25,9 @@ struct c3_temperature_response_parameters {
     double Tp_Hd;       //!< Johnson, Eyring, & Williams enthalpy of deactivation for Tp_norm (J / mol)
     double Tp_S;        //!< Johnson, Eyring, & Williams entropy parameter for Tp_norm (J / K / mol)
     double Vcmax_c;     //!< Arrhenius scaling parameter for Vcmax_norm (dimensionless)
-    double Vcmax_Ea;    //!< Arrhenius activation energy for Vcmax_norm (J / mol)
+    double Vcmax_Ha;    //!< Johnson, Eyring, & Williams activation energy for Vcmax_norm (J / mol)
+    double Vcmax_Hd;    //!< Johnson, Eyring, & Williams enthalpy of deactivation for Vcmax_norm (J / mol)
+    double Vcmax_S;     //!< Johnson, Eyring, & Williams entropy parameter for Vcmax_norm (J / K / mol)
 };
 
 struct c3_param_at_tleaf {
