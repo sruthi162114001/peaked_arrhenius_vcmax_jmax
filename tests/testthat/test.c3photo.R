@@ -17,7 +17,9 @@ test_that("c3photoC is sensitive to changes in vcmax", {
         Gstar_Ea = 37.83e3,
         Jmax_at_25 = 180,
         Jmax_c = 17.57,
-        Jmax_Ea = 43.54e3,
+        Jmax_Ha = 43.54e3,
+        Jmax_Hd = Inf,
+        Jmax_S = -Inf,
         Kc_c = 38.05,
         Kc_Ea = 79.43e3,
         Ko_c = 20.30,
@@ -44,7 +46,9 @@ test_that("c3photoC is sensitive to changes in vcmax", {
         Tp_S = 0.588e3,
         Tp_at_25 = 23,
         Vcmax_c = 26.35,
-        Vcmax_Ea = 65.33e3
+        Vcmax_Ha = 65.33e3,
+        Vcmax_Hd = Inf,
+        Vcmax_S = -Inf
     )
 
     # Get net assimilation for Vcmax_at_25 = 100 micromol / m^2 / s
