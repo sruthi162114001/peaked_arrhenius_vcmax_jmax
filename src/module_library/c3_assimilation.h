@@ -153,7 +153,7 @@ class c3_assimilation : public direct_module
     double const& Gstar_Ea;
     double const& Jmax_at_25;
     double const& Jmax_c;
-     double const& Jmax_Ha;
+    double const& Jmax_Ha;
     double const& Jmax_Hd;
     double const& Jmax_S;
     double const& Kc_c;
@@ -219,9 +219,9 @@ string_vector c3_assimilation::get_inputs()
         "Gstar_Ea",                     // J / mol
         "Jmax_at_25",                   // micromol / m^2 / s
         "Jmax_c",                       // dimensionless
-        "Jmax_Ha",                     // J / mol
-        "Jmax_Hd",                     // J / mol
-        "Jmax_S",                      // J / K / mol
+        "Jmax_Ha",                      // J / mol
+        "Jmax_Hd",                      // J / mol
+        "Jmax_S",                       // J / K / mol
         "Kc_c",                         // dimensionless
         "Kc_Ea",                        // J / mol
         "Ko_c",                         // dimensionless
@@ -250,7 +250,7 @@ string_vector c3_assimilation::get_inputs()
         "Vcmax_c",                      // dimensionless
         "Vcmax_Ha",                     // J / mol
         "Vcmax_Hd",                     // J / mol
-        "Vcmax_S",                      // J / K / mol
+        "Vcmax_S"                       // J / K / mol
     };
 }
 
