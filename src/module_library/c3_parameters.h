@@ -137,8 +137,8 @@ string_vector c3_parameters::get_inputs()
         "Tp_Hd",       // J / mol
         "Tp_S",        // J / K / mol
         "Vcmax_c",     // dimensionless
-        "Vcmax_Ha"     // J / mol
-        "Vcmax_Hd"     // J / mol
+        "Vcmax_Ha",    // J / mol
+        "Vcmax_Hd",    // J / mol
         "Vcmax_S"      // J / K / mol
     };
 }
