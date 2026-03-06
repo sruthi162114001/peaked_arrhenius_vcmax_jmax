@@ -3,7 +3,9 @@
 
 struct c3_temperature_response_parameters {
     double Gstar_Ea;    //!< Arrhenius activation energy for Gstar (J / mol)
-    double Jmax_Ea;     //!< Arrhenius activation energy for Jmax_norm (J / mol)
+    double Jmax_Ha;     //!< peaked Arrhenius activation energy for Jmax_norm (J / mol)
+    double Jmax_Hd;     //!< peaked Arrhenius deactivation energy for Jmax_norm (J / mol)
+    double Jmax_S;      //!< peaked Arrhenius entropy parameter for Jmax_norm (J / K / mol)
     double Kc_Ea;       //!< Arrhenius activation energy for Kc (J / mol)
     double Ko_Ea;       //!< Arrhenius activation energy for Ko (J / mol)
     double phi_PSII_0;  //!< Order 0 coefficient of polynomial response for theta (dimensionless)
@@ -16,7 +18,9 @@ struct c3_temperature_response_parameters {
     double Tp_Ha;       //!< Johnson, Eyring, & Williams enthalpy of activation for Tp_norm (J / mol)
     double Tp_Hd;       //!< Johnson, Eyring, & Williams enthalpy of deactivation for Tp_norm (J / mol)
     double Tp_S;        //!< Johnson, Eyring, & Williams entropy parameter for Tp_norm (J / K / mol)
-    double Vcmax_Ea;    //!< Arrhenius activation energy for Vcmax_norm (J / mol)
+    double Vcmax_Ha;    //!< peaked Arrhenius activation energy for Vcmax_norm (J / mol)
+    double Vcmax_Hd;    //!< peaked Arrhenius deactivation energy for Vcmax_norm (J / mol)
+    double Vcmax_S;     //!< peaked Arrhenius entropy parameter for Vcmax_norm (J / K / mol)
 };
 
 struct c3_param_at_tleaf {

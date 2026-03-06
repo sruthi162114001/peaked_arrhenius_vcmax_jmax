@@ -27,7 +27,9 @@ string_vector c3_canopy::get_inputs()
         "Gstar_Ea",                     // J / mol
         "heightf",                      // m^(-1)
         "Jmax_at_25",                   // micromol / m^2 / s
-        "Jmax_Ea",                      // J / mol
+        "Jmax_Ha",                      // J / mol
+        "Jmax_Hd",                      // J / mol
+        "Jmax_S",                       // J / K / mol
         "k_diffuse",                    // dimensionless
         "Kc_at_25",                     // micromol / mol
         "Kc_Ea",                        // J / mol
@@ -65,7 +67,9 @@ string_vector c3_canopy::get_inputs()
         "Tp_Hd",                // J / mol
         "Tp_S",                 // J / K / mol
         "Vcmax_at_25",          // micromol / m^2 / s
-        "Vcmax_Ea",             // J / mol
+        "Vcmax_Ha",             // J / mol
+        "Vcmax_Hd",             // J / mol
+        "Vcmax_S",              // J / K / mol
         "windspeed",            // m / s
         "windspeed_height"      // m
     };
@@ -89,7 +93,9 @@ void c3_canopy::do_operation() const
     // Combine temperature response parameters
     c3_temperature_response_parameters const tr_param{
         Gstar_Ea,
-        Jmax_Ea,
+        Jmax_Ha,
+        Jmax_Hd,
+        Jmax_S,
         Kc_Ea,
         Ko_Ea,
         phi_PSII_0,
@@ -102,7 +108,9 @@ void c3_canopy::do_operation() const
         Tp_Ha,
         Tp_Hd,
         Tp_S,
-        Vcmax_Ea};
+        Vcmax_Ha,
+        Vcmax_Hd,
+        Vcmax_S};
 
     const canopy_photosynthesis_outputs can_result = c3CanAC(
         tr_param,
