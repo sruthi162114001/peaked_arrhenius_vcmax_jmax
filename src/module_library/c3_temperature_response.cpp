@@ -59,7 +59,7 @@ c3_param_at_tleaf c3_temperature_response(
 )
 {
     // Get reference temperature in Kelvin
-    double constexpr Tref_K = 37.0 + celsius_to_kelvin;  // K
+    double constexpr Tref_K = 25.0 + celsius_to_kelvin;  // K
 
     // Get leaf temperature in Kelvin
     double const Tleaf_K = Tleaf + celsius_to_kelvin;  // K
