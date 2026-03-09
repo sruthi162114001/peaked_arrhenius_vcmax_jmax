@@ -77,7 +77,9 @@ willow <- list(
         hydrDist                     = 0,
         iSp                          = 1.1,
         Jmax_at_25                   = 180,
-        Jmax_Ea                      = 43.54e3,  # Table 1 of Bernacchi et al. 2003 (https://doi.org/10.1046/j.0016-8025.2003.01050.x)
+        Jmax_Ha                      = 43.54e3,  # Table 1 of Bernacchi et al. 2003 (https://doi.org/10.1046/j.0016-8025.2003.01050.x)
+        Jmax_Hd                      = 100000,
+        Jmax_S                       = -100000,
         k_diffuse                    = 0.37,
         Kc_at_25                     = 406.7908, # Table 1 of Bernacchi et al. 2001 (https://doi.org/10.1111/j.1365-3040.2001.00668.x)
         Kc_Ea                        = 79.43e3,  # Table 1 of Bernacchi et al. 2001 (https://doi.org/10.1111/j.1365-3040.2001.00668.x)
@@ -185,7 +187,9 @@ willow <- list(
         Tp_Hd                        = 182.14e3, # Figure 7 of Yang et al. 2016 (https://doi.org/10.1007/s00425-015-2436-8)
         Tp_S                         = 0.588e3,  # Figure 7 of Yang et al. 2016 (https://doi.org/10.1007/s00425-015-2436-8)
         Vcmax_at_25                  = 100,
-        Vcmax_Ea                     = 65.33e3,  # Table 1 of Bernacchi et al. 2001 (https://doi.org/10.1111/j.1365-3040.2001.00668.x)
+        Vcmax_Ha                     = 65.33e3,  # Table 1 of Bernacchi et al. 2001 (https://doi.org/10.1111/j.1365-3040.2001.00668.x)
+        Vcmax_Hd                     = 100000,
+        Vcmax_S                      = -100000,
         windspeed_height             = 5,
         wsFun                        = 2
     )
