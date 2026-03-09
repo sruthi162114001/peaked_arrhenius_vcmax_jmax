@@ -66,12 +66,12 @@ c3_param_at_tleaf c3_temperature_response(
 
     return c3_param_at_tleaf{
         /* Gstar_norm = */ arrhenius_exponential(param.Gstar_Ea, Tref_K, Tleaf_K),
-        /* Jmax_norm =  */ peaked_arrhenius_response(param.Jmax_Ha, param.Jmax_Hd, Tref_K, param.Jmax_S, Tleaf_K),
+        /* Jmax_norm =  */ johnson_eyring_williams_response(param.Jmax_Ha, param.Jmax_Hd, Tref_K, param.Jmax_S, Tleaf_K),
         /* Kc_norm =    */ arrhenius_exponential(param.Kc_Ea, Tref_K, Tleaf_K),
         /* Ko_norm =    */ arrhenius_exponential(param.Ko_Ea, Tref_K, Tleaf_K),
         /* phi_PSII =   */ polynomial_response(param.phi_PSII_0, param.phi_PSII_1, param.phi_PSII_2, Tleaf),
         /* RL_norm =    */ arrhenius_exponential(param.RL_Ea, Tref_K, Tleaf_K),
         /* theta =      */ polynomial_response(param.theta_0, param.theta_1, param.theta_2, Tleaf),
         /* Tp_norm =    */ johnson_eyring_williams_response(param.Tp_Ha, param.Tp_Hd, Tref_K, param.Tp_S, Tleaf_K),
-        /* Vcmax_norm = */ peaked_arrhenius_response(param.Vcmax_Ha, param.Vcmax_Hd, Tref_K, param.Vcmax_S, Tleaf_K)};
+        /* Vcmax_norm = */ johnson_eyring_williams_response(param.Vcmax_Ha, param.Vcmax_Hd, Tref_K, param.Vcmax_S, Tleaf_K)};
 }
