@@ -25,7 +25,10 @@ Rscript testthat.R
   will run all tests in the `tests/testthat` directory _against this
   installed version_.  If you want the tests to reflect changes to
   your source code, reinstall BioCro before running them, or use one
-  of the alternative test-running methods outlined below.
+  of the alternative test-running methods outlined below.  If the
+  installed version differs from your source tree, many tests may fail
+  for reasons that have nothing to do with your changes; see the
+  ["Troubleshooting" section](#sec:test-troubleshooting).
 
 ## tl;dr for devtools users {#sec:TLDR}
 
@@ -296,6 +299,104 @@ Rscript -e "devtools::test()"
 Again, the _filter_ option may be used with this function to limit the
 tests run, and the default reporter may be overridden with the
 _reporter_ option.
+
+## Troubleshooting {#sec:test-troubleshooting}
+
+### Many unrelated tests fail: check _which_ BioCro is being tested {#sec:wrong-version}
+
+`testthat.R` begins with `library(BioCro)`, so `Rscript testthat.R`,
+`source('testthat.R')`, and `test_check('BioCro')` all test whatever
+version of BioCro is _installed_ in your R library, using the test
+files and stored test data from your _source tree_.  If the two don't
+match—for example, because you have a released version of BioCro
+installed but have checked out a development branch, or because you
+changed the source code and haven't reinstalled—the tests compare one
+version's code against another version's expectations, and large parts
+of the suite can fail even though nothing is wrong with the source
+code.
+
+Typical symptoms of such a mismatch are:
+
+- Errors about module inputs that don't exist in your source tree (or
+  that do exist there but are reported as unexpected), such as
+
+    ```
+    Error: The `BioCro:c3_assimilation` module requires `Jmax_Ea` as an input quantity
+    Error: The `BioCro:FvCB` module requires `Cc` as an input quantity
+    ```
+
+    (Here the source tree's tests supply `Jmax_Ha`, `Jmax_Hd`, and
+    `Jmax_S`, but the installed package still expects `Jmax_Ea`.)
+
+- `test.Modules.R` reporting that a module test case file "does not
+  exist" for a module that isn't in your source tree.
+
+- `test.CropModels.R` reporting that the new simulation result "does
+  not agree with the stored result" for _every_ crop, including crops
+  you haven't touched.
+
+- Failures in several test files that have nothing to do with the code
+  you changed.
+
+To find out which version is being tested, run the following in the R
+session where BioCro is loaded:
+
+```r
+packageVersion('BioCro')            # compare with 'Version:' in the DESCRIPTION file
+getNamespaceInfo('BioCro', 'path')  # the source tree, or a directory in your R library?
+```
+
+To fix the problem, either test against the source code, using
+`test_local()` (see the ["Source-Code Testing"
+section](#sec:testing-local)) or `devtools::test()` (see [Using
+devtools]), or else reinstall BioCro from your source tree (for
+example, by running `R CMD INSTALL .` in the top-level directory of
+the source tree) before running `testthat.R` again.
+
+### Module tests fail after an intentional change to a module {#sec:stale-module-cases}
+
+`test.Modules.R` checks each module against the stored cases in
+`tests/module_test_cases`.  If you deliberately change a module's
+behavior, or add, remove, or rename its inputs or outputs, the stored
+expected outputs become stale, and the test reports that "calculated
+outputs do not match expected outputs".  Don't edit the expected
+values by hand or in a spreadsheet (spreadsheet programs also silently
+truncate digits and reformat special values such as `Inf`); instead,
+once you are satisfied that the new behavior is correct, regenerate
+them from the source code:
+
+```r
+pkgload::load_all('<path to the BioCro source tree>')
+update_csv_cases('BioCro:<module name>', '<path to tests/module_test_cases>')
+```
+
+This keeps the inputs and description of every case in the file,
+re-runs the module, and stores the new outputs as the expected values.
+Note that the first case in most files, the "automatically-generated
+test case", sets (nearly) _every_ input to 1—including any inputs you
+have just added—so it usually needs to be updated even when the more
+realistic cases are unaffected.  Review the result with `git diff` before
+committing.  See `?module_case_files` for details and for the related
+functions `initialize_csv` and `add_csv_row`.
+
+### The `_problems` directory {#sec:problems-directory}
+
+When a test fails while the suite is being run by `testthat.R`,
+`test_check`, or `R CMD check`, recent versions of _testthat_ (3.3.0 or
+later) write a small script for each failing expectation to
+`tests/testthat/_problems/<test file>-<line>.R`, and they store the
+failed expectations (including their error messages) in
+`tests/testthat/testthat-problems.rds`.  Each script contains just
+enough code to reproduce that one failure, so you can open it in an R
+session and run it line by line.
+
+These files are a debugging aid for the person whose tests just
+failed.  They describe one particular run on one particular machine,
+they are never read by the test suite, and _testthat_ never deletes
+old ones, so they should not be committed; both are listed in
+`.gitignore`.  Delete the directory whenever you like, or set the
+environment variable `TESTTHAT_PROBLEMS` to `false` to stop _testthat_
+from creating it.
 
 
 [^comment]: The names "Progress" and "Summary" almost seem to me as if
