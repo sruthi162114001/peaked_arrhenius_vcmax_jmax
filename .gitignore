@@ -83,6 +83,7 @@ about_pkgdown_documentation.md
 /tests/testthat/*.rds
 /tests/*.pdf
 /tests/testthat/*.pdf
+/tests/testthat/_problems/
 
 # Files potentially generated when parameterizing soybean
 /inst/extdata/error_log.md
